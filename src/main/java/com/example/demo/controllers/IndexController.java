@@ -5,6 +5,7 @@ import com.example.demo.model.Task;
 import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.repositories.TaskRepository;
 import com.example.demo.services.TaskService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,6 @@ public class IndexController {
 
     @RequestMapping({"","/","/index"})
     public String getIndexPage() {
-
         Set<Task> tasks = taskService.getAllTasks();
 
         for (Task task : tasks) {

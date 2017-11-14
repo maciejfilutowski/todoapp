@@ -31,6 +31,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     private List<Task> getTasks() {
 
         Optional<Project> project = projectRepository.findByDescription("Project 1");
+        Optional<Project> project2 = projectRepository.findByDescription("Project 2");
 
         List<Task> tasks = new ArrayList<>(2);
 
@@ -52,6 +53,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         task2.setStatus(ETaskStatus.COMPLETED);
         task2.setPriority(ETaskPriority.HIGH);
         task2.getProjects().add(project.get());
+        task2.getProjects().add(project2.get());
         TaskDescription taskDescription2 = new TaskDescription();
         taskDescription2.setDescription("\n" +
                 "    Create databases on the history server.\n" +
