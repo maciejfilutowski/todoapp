@@ -1,11 +1,15 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.Project;
+import com.example.demo.model.Task;
 import com.example.demo.repositories.ProjectRepository;
+import com.example.demo.repositories.TaskRepository;
+import com.example.demo.services.TaskService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Created by filutma1 on 2017-11-14.
@@ -13,17 +17,20 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    private ProjectRepository projectRepository;
+    private final TaskService taskService;
 
-    public IndexController(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    public IndexController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
     @RequestMapping({"","/","/index"})
     public String getIndexPage() {
 
-        Optional<Project> project = projectRepository.findByDescription("Project 2");
-        System.out.println(project.get().getDescription());
+        Set<Task> tasks = taskService.getAllTasks();
+
+        for (Task task : tasks) {
+            System.out.println(task.getTaskName());
+        }
 
         return "index";
     }
