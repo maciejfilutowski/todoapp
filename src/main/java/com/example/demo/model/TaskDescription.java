@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by filutma1 on 2017-11-14.
  */
 @Entity
-public class TaskDecscription {
+public class TaskDescription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -18,7 +19,7 @@ public class Task {
     private String taskName;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private TaskDecscription taskDecscription;
+    private TaskDescription taskDescription;
 
     private Date dateAdded;
 
@@ -29,13 +30,13 @@ public class Task {
     private ETaskPriority priority;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "task")
-    private Set<Comment> comments;
+    private Set<Comment> comments = new HashSet<>();
 
     @ManyToMany
     @JoinTable (name = "task_projects",
                 joinColumns = @JoinColumn (name = "task_id"),
                 inverseJoinColumns = @JoinColumn(name = "project_id"))
-    private Set<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -53,12 +54,12 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public TaskDecscription getTaskDecscription() {
-        return taskDecscription;
+    public TaskDescription getTaskDescription() {
+        return taskDescription;
     }
 
-    public void setTaskDecscription(TaskDecscription taskDecscription) {
-        this.taskDecscription = taskDecscription;
+    public void setTaskDescription(TaskDescription taskDescription) {
+        this.taskDescription = taskDescription;
     }
 
     public Date getDateAdded() {
